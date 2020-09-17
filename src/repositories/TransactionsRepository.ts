@@ -21,8 +21,8 @@ class TransactionsRepository extends Repository<Transaction> {
       .where('t.type = :type', { type: 'outcome' })
       .getRawOne();
     return {
-      income: parseInt(income, 10),
-      outcome: parseInt(outcome, 10),
+      income: !income ? 0 : parseInt(income, 10),
+      outcome: !outcome ? 0 : parseInt(outcome, 10),
       total: income - outcome,
     };
   }
